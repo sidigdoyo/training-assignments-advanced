@@ -32,6 +32,7 @@
 package com.jme3.shadow;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.cons.FaceCullMode;
 import com.jme3.export.InputCapsule;
 import com.jme3.export.JmeExporter;
 import com.jme3.export.JmeImporter;
@@ -45,7 +46,6 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.post.SceneProcessor;
 import com.jme3.renderer.Camera;
-import com.jme3.renderer.Caps;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.renderer.ViewPort;
@@ -189,7 +189,7 @@ public abstract class AbstractShadowRenderer implements SceneProcessor, Savable 
     }
 
     protected void initForcedRenderState() {
-        forcedRenderState.setFaceCullMode(RenderState.FaceCullMode.Front);
+        forcedRenderState.setFaceCullMode(FaceCullMode.Front);
         forcedRenderState.setColorWrite(false);
         forcedRenderState.setDepthWrite(true);
         forcedRenderState.setDepthTest(true);
@@ -775,10 +775,10 @@ public abstract class AbstractShadowRenderer implements SceneProcessor, Savable 
         this.renderBackFacesShadows = renderBackFacesShadows;
         if(renderBackFacesShadows) {
             getPreShadowForcedRenderState().setPolyOffset(5, 3);
-            getPreShadowForcedRenderState().setFaceCullMode(RenderState.FaceCullMode.Back);
+            getPreShadowForcedRenderState().setFaceCullMode(FaceCullMode.Back);
         }else{
             getPreShadowForcedRenderState().setPolyOffset(0, 0);
-            getPreShadowForcedRenderState().setFaceCullMode(RenderState.FaceCullMode.Front);
+            getPreShadowForcedRenderState().setFaceCullMode(FaceCullMode.Front);
         }
     }
 

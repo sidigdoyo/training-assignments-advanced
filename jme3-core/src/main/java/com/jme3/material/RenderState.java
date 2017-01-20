@@ -31,10 +31,10 @@
  */
 package com.jme3.material;
 
+import com.jme3.cons.*;
 import com.jme3.export.*;
 import com.jme3.scene.Mesh;
 import java.io.IOException;
-import com.jme3.cons.BlendMode;
 
 /**
  * <code>RenderState</code> specifies material rendering properties that cannot
@@ -73,140 +73,7 @@ public class RenderState implements Cloneable, Savable {
      */
     public static final RenderState ADDITIONAL = new RenderState();
 
-    /**
-     * <code>TestFunction</code> specifies the testing function for stencil test
-     * function.
-     *
-     * <p>
-     * The reference value given in the stencil command is the input value while
-     * the reference is the value already in the stencil buffer.
-     */
-    public enum TestFunction {
-
-        /**
-         * The test always fails
-         */
-        Never,
-        /**
-         * The test succeeds if the input value is equal to the reference value.
-         */
-        Equal,
-        /**
-         * The test succeeds if the input value is less than the reference value.
-         */
-        Less,
-        /**
-         * The test succeeds if the input value is less than or equal to
-         * the reference value.
-         */
-        LessOrEqual,
-        /**
-         * The test succeeds if the input value is greater than the reference value.
-         */
-        Greater,
-        /**
-         * The test succeeds if the input value is greater than or equal to
-         * the reference value.
-         */
-        GreaterOrEqual,
-        /**
-         * The test succeeds if the input value does not equal the
-         * reference value.
-         */
-        NotEqual,
-        /**
-         * The test always passes
-         */
-        Always
-    }
-
-    /**
-     * <code>BlendEquation</code> specifies the blending equation to combine
-     * pixels.
-     */
-    public enum BlendEquation {
-        /**
-         * Sets the blend equation so that the source and destination data are
-         * added. (Default) Clamps to [0,1] Useful for things like antialiasing
-         * and transparency.
-         */
-        Add,
-        /**
-         * Sets the blend equation so that the source and destination data are
-         * subtracted (Src - Dest). Clamps to [0,1] Falls back to Add if
-         * supportsSubtract is false.
-         */
-        Subtract,
-        /**
-         * Same as Subtract, but the order is reversed (Dst - Src). Clamps to
-         * [0,1] Falls back to Add if supportsSubtract is false.
-         */
-        ReverseSubtract,
-        /**
-         * Sets the blend equation so that each component of the result color is
-         * the minimum of the corresponding components of the source and
-         * destination colors. This and Max are useful for applications that
-         * analyze image data (image thresholding against a constant color, for
-         * example). Falls back to Add if supportsMinMax is false.
-         */
-        Min,
-        /**
-         * Sets the blend equation so that each component of the result color is
-         * the maximum of the corresponding components of the source and
-         * destination colors. This and Min are useful for applications that
-         * analyze image data (image thresholding against a constant color, for
-         * example). Falls back to Add if supportsMinMax is false.
-         */
-        Max
-    }
-    
-    /**
-     * <code>BlendEquationAlpha</code> specifies the blending equation to
-     * combine pixels for the alpha component.
-     */
-    public enum BlendEquationAlpha {
-        /**
-         * Sets the blend equation to be the same as the one defined by
-         * {@link #blendEquation}.
-         *
-         */
-        InheritColor,
-        /**
-         * Sets the blend equation so that the source and destination data are
-         * added. (Default) Clamps to [0,1] Useful for things like antialiasing
-         * and transparency.
-         */
-        Add,
-        /**
-         * Sets the blend equation so that the source and destination data are
-         * subtracted (Src - Dest). Clamps to [0,1] Falls back to Add if
-         * supportsSubtract is false.
-         */
-        Subtract,
-        /**
-         * Same as Subtract, but the order is reversed (Dst - Src). Clamps to
-         * [0,1] Falls back to Add if supportsSubtract is false.
-         */
-        ReverseSubtract,
-        /**
-         * Sets the blend equation so that the result alpha is the minimum of
-         * the source alpha and destination alpha. This and Max are useful for
-         * applications that analyze image data (image thresholding against a
-         * constant color, for example). Falls back to Add if supportsMinMax is
-         * false.
-         */
-        Min,
-        /**
-         * sSets the blend equation so that the result alpha is the maximum of
-         * the source alpha and destination alpha. This and Min are useful for
-         * applications that analyze image data (image thresholding against a
-         * constant color, for example). Falls back to Add if supportsMinMax is
-         * false.
-         */
-        Max
-    }
-    
-    /**
+  /**
      * <code>BlendFunc</code> defines the blending functions for use with 
      * <code>BlendMode.Custom</code>.
      * Source color components are referred to as (R_s0, G_s0, B_s0, A_s0).
@@ -259,32 +126,7 @@ public class RenderState implements Cloneable, Savable {
         Src_Alpha_Saturate;
     }
 
-    /**
-     * <code>FaceCullMode</code> specifies the criteria for faces to be culled.
-     *
-     * @see RenderState#setFaceCullMode(com.jme3.material.RenderState.FaceCullMode)
-     */
-    public enum FaceCullMode {
-
-        /**
-         * Face culling is disabled.
-         */
-        Off,
-        /**
-         * Cull front faces
-         */
-        Front,
-        /**
-         * Cull back faces
-         */
-        Back,
-        /**
-         * Cull both front and back faces.
-         */
-        FrontAndBack
-    }
-
-    /**
+  /**
      * <code>StencilOperation</code> specifies the stencil operation to use
      * in a certain scenario as specified in {@link RenderState#setStencil(boolean,
      * com.jme3.material.RenderState.StencilOperation,
@@ -293,8 +135,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction) }
+     * TestFunction,
+     * TestFunction) }
      */
     public enum StencilOperation {
 
@@ -937,8 +779,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public StencilOperation getFrontStencilStencilFailOperation() {
         return frontStencilStencilFailOperation;
@@ -956,8 +798,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public StencilOperation getFrontStencilDepthFailOperation() {
         return frontStencilDepthFailOperation;
@@ -975,8 +817,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public StencilOperation getFrontStencilDepthPassOperation() {
         return frontStencilDepthPassOperation;
@@ -994,8 +836,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public StencilOperation getBackStencilStencilFailOperation() {
         return backStencilStencilFailOperation;
@@ -1013,8 +855,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public StencilOperation getBackStencilDepthFailOperation() {
         return backStencilDepthFailOperation;
@@ -1032,8 +874,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public StencilOperation getBackStencilDepthPassOperation() {
         return backStencilDepthPassOperation;
@@ -1051,8 +893,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public TestFunction getFrontStencilFunction() {
         return frontStencilFunction;
@@ -1070,8 +912,8 @@ public class RenderState implements Cloneable, Savable {
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
      * com.jme3.material.RenderState.StencilOperation,
-     * com.jme3.material.RenderState.TestFunction,
-     * com.jme3.material.RenderState.TestFunction)
+     * TestFunction,
+     * TestFunction)
      */
     public TestFunction getBackStencilFunction() {
         return backStencilFunction;
@@ -1168,7 +1010,7 @@ public class RenderState implements Cloneable, Savable {
      *
      * @return the face cull mode.
      *
-     * @see RenderState#setFaceCullMode(com.jme3.material.RenderState.FaceCullMode)
+     * @see RenderState#setFaceCullMode(FaceCullMode)
      */
     public FaceCullMode getFaceCullMode() {
         return cullMode;
@@ -1265,7 +1107,7 @@ public class RenderState implements Cloneable, Savable {
      *
      * @return the depth comparison function
      *
-     * @see RenderState#setDepthFunc(com.jme3.material.RenderState.TestFunction)
+     * @see RenderState#setDepthFunc(TestFunction)
      */
     public TestFunction getDepthFunc() {
         return depthFunc;

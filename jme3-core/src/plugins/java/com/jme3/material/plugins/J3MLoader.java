@@ -31,12 +31,14 @@
  */
 package com.jme3.material.plugins;
 
+import com.jme3.cons.BlendEquationAlpha;
+import com.jme3.cons.TestFunction;
 import com.jme3.material.logic.*;
 import com.jme3.asset.*;
 import com.jme3.material.*;
-import com.jme3.material.RenderState.BlendEquation;
+import com.jme3.cons.BlendEquation;
 import com.jme3.material.RenderState.BlendMode;
-import com.jme3.material.RenderState.FaceCullMode;
+import com.jme3.cons.FaceCullMode;
 import com.jme3.material.TechniqueDef.LightMode;
 import com.jme3.material.TechniqueDef.ShadowMode;
 import com.jme3.material.logic.StaticPassLightingLogic;
@@ -463,7 +465,7 @@ public class J3MLoader implements AssetLoader {
         }else if (split[0].equals("BlendEquation")){
             renderState.setBlendEquation(BlendEquation.valueOf(split[1]));
         }else if (split[0].equals("BlendEquationAlpha")){
-            renderState.setBlendEquationAlpha(RenderState.BlendEquationAlpha.valueOf(split[1]));
+            renderState.setBlendEquationAlpha(BlendEquationAlpha.valueOf(split[1]));
         }else if (split[0].equals("AlphaTestFalloff")){
             // Ignore for backwards compatbility
         }else if (split[0].equals("PolyOffset")){
@@ -475,9 +477,9 @@ public class J3MLoader implements AssetLoader {
         }else if (split[0].equals("PointSprite")){
             // Ignore for backwards compatbility
         }else if (split[0].equals("DepthFunc")){
-            renderState.setDepthFunc(RenderState.TestFunction.valueOf(split[1]));
+            renderState.setDepthFunc(TestFunction.valueOf(split[1]));
         }else if (split[0].equals("AlphaFunc")){
-            renderState.setAlphaFunc(RenderState.TestFunction.valueOf(split[1]));
+            renderState.setAlphaFunc(TestFunction.valueOf(split[1]));
         }else if (split[0].equals("LineWidth")){
             renderState.setLineWidth(Float.parseFloat(split[1]));
         } else {

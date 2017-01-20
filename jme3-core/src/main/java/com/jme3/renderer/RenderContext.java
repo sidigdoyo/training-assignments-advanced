@@ -31,6 +31,10 @@
  */
 package com.jme3.renderer;
 
+import com.jme3.cons.BlendEquation;
+import com.jme3.cons.BlendEquationAlpha;
+import com.jme3.cons.FaceCullMode;
+import com.jme3.cons.TestFunction;
 import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Mesh;
@@ -46,9 +50,9 @@ import com.jme3.texture.Image;
 public class RenderContext {
 
     /**
-     * @see RenderState#setFaceCullMode(com.jme3.material.RenderState.FaceCullMode)
+     * @see RenderState#setFaceCullMode(FaceCullMode)
      */
-    public RenderState.FaceCullMode cullMode = RenderState.FaceCullMode.Off;
+    public FaceCullMode cullMode = FaceCullMode.Off;
 
     /**
      * @see RenderState#setDepthTest(boolean) 
@@ -101,14 +105,14 @@ public class RenderContext {
     public RenderState.BlendMode blendMode = RenderState.BlendMode.Off;
 
     /**
-     * @see RenderState#setBlendEquation(com.jme3.material.RenderState.BlendEquation) 
+     * @see RenderState#setBlendEquation(BlendEquation)
      */
-    public RenderState.BlendEquation blendEquation = RenderState.BlendEquation.Add;
+    public BlendEquation blendEquation = BlendEquation.Add;
     
     /**
-     * @see RenderState#setBlendEquationAlpha(com.jme3.material.RenderState.BlendEquationAlpha) 
+     * @see RenderState#setBlendEquationAlpha(BlendEquationAlpha)
      */
-    public RenderState.BlendEquationAlpha blendEquationAlpha = RenderState.BlendEquationAlpha.InheritColor;
+    public BlendEquationAlpha blendEquationAlpha = BlendEquationAlpha.InheritColor;
 
     /**
      * @see RenderState#setWireframe(boolean) 
@@ -221,8 +225,8 @@ public class RenderContext {
     public RenderState.StencilOperation backStencilStencilFailOperation = RenderState.StencilOperation.Keep;
     public RenderState.StencilOperation backStencilDepthFailOperation = RenderState.StencilOperation.Keep;
     public RenderState.StencilOperation backStencilDepthPassOperation = RenderState.StencilOperation.Keep;
-    public RenderState.TestFunction frontStencilFunction = RenderState.TestFunction.Always;
-    public RenderState.TestFunction backStencilFunction = RenderState.TestFunction.Always;
+    public TestFunction frontStencilFunction = TestFunction.Always;
+    public TestFunction backStencilFunction = TestFunction.Always;
 
     /**
      * Vertex attribs currently bound and enabled. If a slot is null, then
@@ -238,12 +242,12 @@ public class RenderContext {
     /**
      * depth test function
      */
-    public RenderState.TestFunction depthFunc = RenderState.TestFunction.Less;
+    public TestFunction depthFunc = TestFunction.Less;
     
      /**
      * alpha test function
      */
-    public RenderState.TestFunction alphaFunc = RenderState.TestFunction.Greater;
+    public TestFunction alphaFunc = TestFunction.Greater;
 
     public int initialDrawBuf;
     public int initialReadBuf;
@@ -254,7 +258,7 @@ public class RenderContext {
      * Reset the RenderContext to default GL state
      */
     public void reset(){
-        cullMode = RenderState.FaceCullMode.Off;
+        cullMode = FaceCullMode.Off;
         depthTestEnabled = false;
         depthWriteEnabled = false;
         colorWriteEnabled = false;
@@ -264,8 +268,8 @@ public class RenderContext {
         polyOffsetUnits = 0;
         pointSize = 1;
         blendMode = RenderState.BlendMode.Off;
-        blendEquation = RenderState.BlendEquation.Add;
-        blendEquationAlpha = RenderState.BlendEquationAlpha.InheritColor;
+        blendEquation = BlendEquation.Add;
+        blendEquationAlpha = BlendEquationAlpha.InheritColor;
         wireframe = false;
         boundShaderProgram = 0;
         boundShader = null;
@@ -296,11 +300,11 @@ public class RenderContext {
         backStencilStencilFailOperation = RenderState.StencilOperation.Keep;
         backStencilDepthFailOperation = RenderState.StencilOperation.Keep;
         backStencilDepthPassOperation = RenderState.StencilOperation.Keep;
-        frontStencilFunction = RenderState.TestFunction.Always;
-        backStencilFunction = RenderState.TestFunction.Always;
+        frontStencilFunction = TestFunction.Always;
+        backStencilFunction = TestFunction.Always;
         
-        depthFunc = RenderState.TestFunction.LessOrEqual;    
-        alphaFunc = RenderState.TestFunction.Greater;
+        depthFunc = TestFunction.LessOrEqual;
+        alphaFunc = TestFunction.Greater;
         clearColor.set(0,0,0,0);
     }
 }

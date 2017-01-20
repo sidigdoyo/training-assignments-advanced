@@ -45,10 +45,13 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.jme3.cons.BlendEquation;
+import com.jme3.cons.BlendEquationAlpha;
+import com.jme3.cons.FaceCullMode;
 import com.jme3.material.RenderState;
 import com.jme3.material.RenderState.BlendFunc;
 import com.jme3.material.RenderState.StencilOperation;
-import com.jme3.material.RenderState.TestFunction;
+import com.jme3.cons.TestFunction;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
@@ -706,7 +709,7 @@ public final class GLRenderer implements Renderer {
         }
 
         if (state.getFaceCullMode() != context.cullMode) {
-            if (state.getFaceCullMode() == RenderState.FaceCullMode.Off) {
+            if (state.getFaceCullMode() == FaceCullMode.Off) {
                 gl.glDisable(GL.GL_CULL_FACE);
             } else {
                 gl.glEnable(GL.GL_CULL_FACE);
@@ -782,7 +785,7 @@ public final class GLRenderer implements Renderer {
                 if (state.getBlendEquation() != context.blendEquation || state.getBlendEquationAlpha() != context.blendEquationAlpha) {
                     int colorMode = convertBlendEquation(state.getBlendEquation());
                     int alphaMode;
-                    if (state.getBlendEquationAlpha() == RenderState.BlendEquationAlpha.InheritColor) {
+                    if (state.getBlendEquationAlpha() == BlendEquationAlpha.InheritColor) {
                         alphaMode = colorMode;
                     } else {
                         alphaMode = convertBlendEquationAlpha(state.getBlendEquationAlpha());
@@ -841,7 +844,7 @@ public final class GLRenderer implements Renderer {
         }
     }
 
-    private int convertBlendEquation(RenderState.BlendEquation blendEquation) {
+    private int convertBlendEquation(BlendEquation blendEquation) {
         switch (blendEquation) {
             case Add:
                 return GL2.GL_FUNC_ADD;
@@ -858,7 +861,7 @@ public final class GLRenderer implements Renderer {
         }
     }
     
-    private int convertBlendEquationAlpha(RenderState.BlendEquationAlpha blendEquationAlpha) {
+    private int convertBlendEquationAlpha(BlendEquationAlpha blendEquationAlpha) {
         //Note: InheritColor mode should already be handled, that is why it does not belong the the switch case.
         switch (blendEquationAlpha) {
             case Add:
